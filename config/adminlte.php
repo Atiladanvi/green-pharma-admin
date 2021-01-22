@@ -187,7 +187,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/',
+    'dashboard_url' => '/dashboard/panel',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -231,7 +231,7 @@ return [
         ],
         [
             'text'        => 'Painel',
-            'url'         => '/',
+            'url'         => '/dashboard/panel',
             'icon'        => 'fas fa-tachometer-alt'
         ]
     ],

@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware([
-    'middleware' => ['web', 'auth'],
+    'web',
+    'auth'
 ])->group(function () {
-    Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('app');
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/panel', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    });
 });
