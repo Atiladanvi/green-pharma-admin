@@ -3,11 +3,10 @@
 declare(strict_types=1);
 
 use Stancl\Tenancy\Database\Models\Domain;
-use Stancl\Tenancy\Database\Models\Tenant;
 
 return [
-    'tenant_model' => Tenant::class,
-    'id_generator' => Stancl\Tenancy\UUIDGenerator::class,
+    'tenant_model' => \App\Models\Tenant::class,
+    'id_generator' => null,
 
     'domain_model' => Domain::class,
 
@@ -30,7 +29,7 @@ return [
     'bootstrappers' => [
         Stancl\Tenancy\Bootstrappers\DatabaseTenancyBootstrapper::class,
         Stancl\Tenancy\Bootstrappers\CacheTenancyBootstrapper::class,
-        Stancl\Tenancy\Bootstrappers\FilesystemTenancyBootstrapper::class,
+        // Stancl\Tenancy\Bootstrappers\FilesystemTenancyBootstrapper::class,
         Stancl\Tenancy\Bootstrappers\QueueTenancyBootstrapper::class,
         // Stancl\Tenancy\Bootstrappers\RedisTenancyBootstrapper::class, // Note: phpredis is needed
     ],
@@ -44,14 +43,14 @@ return [
         /**
          * Connection used as a "template" for the tenant database connection.
          */
-        'template_tenant_connection' => null,
+        'template_tenant_connection' => 'central',
 
         /**
-         * Tenant database names are created like this:
+         * Tenant.php database names are created like this:
          * prefix + tenant_id + suffix.
          */
-        'prefix' => 'tenant',
-        'suffix' => '',
+        'prefix' => 'green_admin_',
+        'suffix' => '_tenant_db',
 
         /**
          * TenantDatabaseManagers are classes that handle the creation & deletion of tenant databases.
