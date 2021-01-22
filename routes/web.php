@@ -15,4 +15,3 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('app');
