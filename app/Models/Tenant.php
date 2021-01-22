@@ -2,16 +2,11 @@
 
 namespace App\Models;
 
-use Stancl\Tenancy\Contracts\TenantWithDatabase;
-use Stancl\Tenancy\Database\Concerns\HasDatabase;
 use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
 
-class Tenant extends BaseTenant implements TenantWithDatabase
+class Tenant extends BaseTenant
 {
-    use HasDatabase;
-
     protected $fillable = [
-        'id',
         'data'
     ];
 
@@ -23,7 +18,6 @@ class Tenant extends BaseTenant implements TenantWithDatabase
     public static function getCustomColumns(): array
     {
         return [
-            'id',
             'data'
         ];
     }
