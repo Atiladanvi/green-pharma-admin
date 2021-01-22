@@ -1,0 +1,55 @@
+@extends('layouts.site')
+@section('content')
+    <div style="padding-bottom: 7rem;padding-top: calc(7rem + 72px);" class="masthead text-white text-center bg-green">
+        <div class="masthead-content">
+            <div class="container">
+                <h1 class="masthead-heading mb-0">Start a web!</h1>
+                <h2 class="masthead-subheading mb-0 mb-0">Create a web under laravel power. It’s easy and free.</h2>
+                <a href="{{ auth()->user() ? route('dashboard') : route('register') }}" class="btn btn-primary btn-xl rounded-pill mt-5">Create your free account</a>
+            </div>
+        </div>
+    </div>
+    <section class="bg-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="p-5">
+                        <img class="img-fluid rounded-circle" src="{{ asset('img/networks.jpg') }}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
+                        <h2 class="display-4">A new system concept</h2>
+                        <p>Make use of all our functionalities on all your way</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-white">
+        <div class="container pb-5">
+            <h2 class="text-center pt-3 mb-4">Made with:</h2>
+            <div class="row">
+                <div class="col align-self-start">
+                </div>
+                <div class="col-lg-6 col-md-6 text-center ">
+                    <a class="mx-2" href="https://laravel.com" target="_blank">
+                        <img src="{{asset('img/logo-laravel-1.svg')}}" alt="logo laravel icon">
+                        <img src="{{asset('img/logo-laravel-2.svg')}}" alt="logo laravel word">
+                    </a>
+                    <a class="mx-2" href="https://startbootstrap.com" target="_blank">
+                        <img width="50px" src="{{asset('img/logo-sb.svg')}}" alt="logo start bootstrap">
+                    </a>
+                    <a class="mx-2" href="https://www.creative-tim.com" target="_blank">
+                        <img width="50px" src="{{asset('img/logo-ct.png')}}" alt="logo creative tim">
+                    </a>
+                    <a class="mx-2" href="https://tenancyforlaravel.com" target="_blank">
+                        <img width="150px" src="{{asset('img/logo-tenancy.svg')}}" alt="logo tenancy">
+                    </a>
+                </div>
+                <div class="col align-self-end">
+                </div>
+            </div>
+        </div>
+    </section>
+@stop
