@@ -22,5 +22,6 @@ Route::middleware([
 ])->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/panel', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('member', App\Http\Controllers\UserController::class);
     });
 });

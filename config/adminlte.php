@@ -229,11 +229,36 @@ return [
             'search' => true,
             'topnav' => true,
         ],
+        ['header' => 'Dashboard'],
         [
             'text'        => 'Painel',
             'url'         => '/dashboard/panel',
             'icon'        => 'fas fa-tachometer-alt'
-        ]
+        ],
+        ['header' => 'Modules'],
+        [
+            'text'    => 'Reports',
+            'icon'    => 'fas fa-fw fa-archive',
+            'submenu' => [
+                [
+                    'text' => 'list',
+                    'url'  => '/dashboard/panel/report',
+                    'icon'    => 'fas fa-fw fa-list',
+                    'can'  => \Database\Seeders\PermissionsSeeder::$LIST_REPORT,
+                ],
+                [
+                    'text' => 'add',
+                    'url'  => '/dashboard/panel/report/add',
+                    'icon'    => 'fas fa-fw fa-plus',
+                    'can'  => \Database\Seeders\PermissionsSeeder::$ADD_REPORT,
+                ],
+            ],
+        ],
+        [
+            'text'        => 'Members',
+            'url'         => '/dashboard/member',
+            'icon'        => 'fas fa-users'
+        ],
     ],
 
     /*
