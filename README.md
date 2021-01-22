@@ -1,4 +1,4 @@
-# Green Pharma Admin
+# green-admin
 
 ## The best way to manage your customers
 
@@ -35,13 +35,13 @@ Supported databases
 Clone the repository
 
 ```bash
-git clone https://github.com/Atiladanvi/green-pharma-admin.git
+git clone https://github.com/Atiladanvi/green-admin.git
 ```
 
 Switch to the repo folder
 
 ```bash
-cd green-pharma-admin
+cd green-admin
 ```
 
 Install all the dependencies using composer
