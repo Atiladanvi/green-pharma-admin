@@ -242,22 +242,23 @@ return [
             'submenu' => [
                 [
                     'text' => 'list',
-                    'url'  => '/dashboard/panel/report',
-                    'icon'    => 'fas fa-fw fa-list',
-                    'can'  => \Database\Seeders\PermissionsSeeder::$LIST_REPORT,
+                    'url'  => '/dashboard/reports',
+                    'icon' => false,
+                    'can'  => \Database\Seeders\PermissionsSeeder::$LIST_REPORTS,
                 ],
                 [
-                    'text' => 'add',
-                    'url'  => '/dashboard/panel/report/add',
-                    'icon'    => 'fas fa-fw fa-plus',
-                    'can'  => \Database\Seeders\PermissionsSeeder::$ADD_REPORT,
+                    'text' => 'create',
+                    'url'  => '/dashboard/report/create',
+                    'icon' => false,
+                    'can'  => \Database\Seeders\PermissionsSeeder::$UPLOAD_REPORT,
                 ],
             ],
         ],
         [
-            'text'        => 'Members',
-            'url'         => '/dashboard/member',
-            'icon'        => 'fas fa-users'
+            'text' => 'Members',
+            'url'  => '/dashboard/members',
+            'icon' => 'fas fa-users',
+            'can'  => \Database\Seeders\PermissionsSeeder::$LIST_MEMBERS,
         ],
     ],
 

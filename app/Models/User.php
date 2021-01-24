@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,9 +12,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles, CentralConnection;
 
-    static $ADMINISTRADOR = 'administrador';
+    static $ADMIN = 'admin';
 
-    static $ANALISTA = 'analista';
+    static $ANALYST = 'analyst';
 
     protected $fillable = [
         'name',
@@ -39,7 +38,7 @@ class User extends Authenticatable
 
     public function getRoleAttribute()
     {
-        return $this->roles->first()->name;
+        return $this->roles->first()->name ?? null;
     }
 
     public function tenant()

@@ -2,30 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Forms\MemberForm;
+use App\CreateMember;
+use App\Forms\MemberCreateForm;
+use App\Forms\MemberEditForm;
 use App\Models\User;
-use App\Tables\UserTable;
-use Illuminate\Support\Facades\Hash;
+use App\Tables\MembersTable;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Illuminate\Http\Request;
-use Octo\Resources\Builders\TableBuilder;
 
-class UserController extends Controller
+class MemberController extends Controller
 {
-    public function index(TableBuilder $tableBuilder)
-    {
-        $users = User::query()
-            ->paginate(15);
+    private $member;
 
-        $table = $tableBuilder->create(UserTable::class, $users)->build();
+    public function __construct(CreateMember $member)
+    {
+        $this->member = $member;
+    }
+
+    public function index()
+    {
+        $table = (new MembersTable(tenant()->id))->setup();
 
         return view('member.index')->with(compact('table'));
     }
 
     public function create(FormBuilder $formBuilder)
     {
-
-        $form = $formBuilder->create(MemberForm::class, [
+        $form = $formBuilder->create(MemberCreateForm::class, [
             'method' => 'POST',
             'url' => route('member.store')
         ]);
@@ -43,14 +46,7 @@ class UserController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        $this->user = User::create([
-            'tenant_id' => tenant()->id,
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
-        ]);
-
-        $this->user->assignRole(User::$ANALISTA);
+        $this->member->create($data);
 
         return redirect(route('member.index'));
     }
@@ -64,7 +60,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        $form = $formBuilder->create(\App\Forms\MemberForm::class, [
+        $form = $formBuilder->create(MemberEditForm::class, [
             'method' => 'PUT',
             'url' => route('member.update', [$user->id]),
             'model' => $user->toArray()

@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('layouts.dashboard')
 
 @section('title', 'Panel')
 
@@ -7,13 +7,5 @@
 @stop
 
 @section('content')
-
-@stop
-
-@section('css')
-
-@stop
-
-@section('js')
 
 @stop

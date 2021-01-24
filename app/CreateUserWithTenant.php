@@ -26,7 +26,7 @@ class CreateUserWithTenant
                 'password' => Hash::make($data['password'])
             ]);
 
-            $this->user->assignRole(User::$ADMINISTRADOR);
+            $this->user->assignRole(User::$ADMIN);
 
         });
 

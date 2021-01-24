@@ -9,18 +9,30 @@ use Spatie\Permission\Models\Role;
 
 class PermissionsSeeder extends Seeder
 {
-    static $ADD_REPORT = 'add report';
+    static $UPLOAD_REPORT = 'upload_report';
 
-    static $LIST_REPORT = 'list report';
+    static $LIST_REPORTS = 'list_reports';
+
+    static $CREATE_MEMBER = 'create_member';
+
+    static $LIST_MEMBERS = 'list_members';
 
     public function run()
     {
-        $role = Role::create(['name' => User::$ADMINISTRADOR]);
-        $permission = Permission::create(['name' => self::$ADD_REPORT]);
-        $role->givePermissionTo($permission);
+        $role = Role::create(['name' => User::$ADMIN]);
+        $role2 = Role::create(['name' => User::$ANALYST]);
 
-        $role2 = Role::create(['name' => User::$ANALISTA]);
-        $permission2 = Permission::create(['name' => self::$LIST_REPORT]);
+        $permission1 = Permission::create(['name' => self::$UPLOAD_REPORT]);
+        $permission2 = Permission::create(['name' => self::$LIST_REPORTS]);
+        $permission3 = Permission::create(['name' => self::$CREATE_MEMBER]);
+        $permission4 = Permission::create(['name' => self::$LIST_MEMBERS]);
+
+        $role->givePermissionTo($permission1);
+        $role->givePermissionTo($permission2);
+        $role->givePermissionTo($permission3);
+        $role->givePermissionTo($permission4);
+
         $role2->givePermissionTo($permission2);
+        $role2->givePermissionTo($permission4);
     }
 }
