@@ -247,8 +247,8 @@ return [
                     'can'  => \Database\Seeders\PermissionsSeeder::$LIST_REPORTS,
                 ],
                 [
-                    'text' => 'create',
-                    'url'  => '/dashboard/report/create',
+                    'text' => 'upload',
+                    'url'  => '/dashboard/report/upload',
                     'icon' => false,
                     'can'  => \Database\Seeders\PermissionsSeeder::$UPLOAD_REPORT,
                 ],

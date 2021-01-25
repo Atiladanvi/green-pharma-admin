@@ -44,5 +44,8 @@ Route::middleware([
 
         Route::put('/member/{id}', [App\Http\Controllers\MemberController::class, 'update'])
             ->name('member.update');
+
+        Route::get('/reports', [App\Http\Controllers\ReportController::class, 'index'])
+            ->name('report.index');
     });
 });
