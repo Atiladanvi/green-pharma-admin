@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class RegistrationTest extends TestCase
 {
-    public function test_example()
+    public function test_register()
     {
         // disable middleware, because we are out of the web browser
         $this->withoutMiddleware();
