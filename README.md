@@ -1,4 +1,4 @@
-# green-admin
+# green-pharma-admin
 
 ## The best way to manage your customers
 
@@ -8,7 +8,7 @@
 
 ### Requirements
 
-* PHP >= 7.2.5
+* PHP >= 7.4
 * Composer PHP >= 1.9.0
 
 PHP extensions:
@@ -25,9 +25,6 @@ PHP extensions:
 
 Supported databases
 
-* MySQL 5.6+
-* PostgreSQL 9.4+
-* SQLite 3.8.8+
 * SQL Server 2017+
 
 ### Installation
@@ -35,13 +32,13 @@ Supported databases
 Clone the repository
 
 ```bash
-git clone https://github.com/Atiladanvi/green-admin.git
+git clone https://github.com/Atiladanvi/green-pharma-admin.git
 ```
 
 Switch to the repo folder
 
 ```bash
-cd green-admin
+cd green-pharma-admin
 ```
 
 Install all the dependencies using composer
@@ -65,7 +62,7 @@ php artisan key:generate
 Set the database connection in `.env`
 
 ```
-DB_CONNECTION=<mysql|pgsql|sqlite|sqlsrv>
+DB_CONNECTION=<sqlsrv>
 DB_HOST=<host>
 DB_PORT=<port>
 DB_DATABASE=<databse name>
@@ -79,10 +76,10 @@ Clean the application cache
 php artisan optimize 
 ```
 
-Run the database migrations and seeders
+Run the green setup
 
 ```bash
-php artisan migrate --seed
+php artisan green:setup
 ```
 
 Start the local development server
@@ -91,7 +88,12 @@ Start the local development server
 php artisan serve
 ```
 
-You can now access the server at http://localhost:8000
+You can access the server at http://localhost:8000
+
+Finally, now you can login as administrator with follows credentials:
+
+**E-mail**: admin@green.dev
+**Password**: greenIsAmazing
 
 ### Changelog
 

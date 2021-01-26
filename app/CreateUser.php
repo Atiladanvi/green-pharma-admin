@@ -2,31 +2,28 @@
 
 namespace App;
 
-use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
-class CreateUserWithTenant
+class CreateUser
 {
     protected $tenant;
 
     protected $user;
 
-    public function create(array $data) : User
+    public function create(array $data, Role $role) : User
     {
-        DB::transaction(function () use ($data){
-
-            $this->tenant = Tenant::create();
+        DB::transaction(function () use ($data, $role){
 
             $this->user = User::create([
-                'tenant_id' => $this->tenant->id,
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password'])
             ]);
 
-            $this->user->assignRole(User::$ADMIN);
+            $this->user->assignRole($role);
 
         });
 

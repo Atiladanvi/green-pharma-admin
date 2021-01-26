@@ -13,9 +13,9 @@ class PermissionsSeeder extends Seeder
 
     static $LIST_REPORTS = 'list_reports';
 
-    static $CREATE_MEMBER = 'create_member';
+    static $CREATE_USER = 'create_user';
 
-    static $LIST_MEMBERS = 'list_members';
+    static $LIST_USERS = 'list_users';
 
     public function run()
     {
@@ -24,8 +24,8 @@ class PermissionsSeeder extends Seeder
 
         $permission1 = Permission::create(['name' => self::$UPLOAD_REPORT]);
         $permission2 = Permission::create(['name' => self::$LIST_REPORTS]);
-        $permission3 = Permission::create(['name' => self::$CREATE_MEMBER]);
-        $permission4 = Permission::create(['name' => self::$LIST_MEMBERS]);
+        $permission3 = Permission::create(['name' => self::$CREATE_USER]);
+        $permission4 = Permission::create(['name' => self::$LIST_USERS]);
 
         $role->givePermissionTo($permission1);
         $role->givePermissionTo($permission2);

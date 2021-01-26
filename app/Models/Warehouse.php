@@ -10,6 +10,8 @@ class Warehouse extends Model
         'name', 'uf'
     ];
 
+    public $timestamps = false;
+
     public function sales()
     {
         return $this->hasMany(SalesMonth::class);

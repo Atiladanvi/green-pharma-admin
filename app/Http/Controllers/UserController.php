@@ -2,43 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\CreateMember;
-use App\Forms\MemberCreateForm;
+use App\CreateUser ;
+use App\Forms\UserCreateForm;
 use App\Forms\MemberEditForm;
 use App\Models\User;
-use App\Tables\MembersTable;
+use App\Tables\UsersTable;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
-class MemberController extends Controller
+class UserController extends Controller
 {
-    private $member;
+    private $user;
 
-    public function __construct(CreateMember $member)
+    public function __construct(CreateUser $user)
     {
-        $this->member = $member;
+        $this->user = $user;
     }
 
     public function index()
     {
-        $table = (new MembersTable(tenant()->id))->setup();
+        $table = (new UsersTable())->setup();
 
-        return view('member.index')->with(compact('table'));
+        return view('user.index')->with(compact('table'));
     }
 
     public function create(FormBuilder $formBuilder)
     {
-        $form = $formBuilder->create(MemberCreateForm::class, [
+        $form = $formBuilder->create(UserCreateForm::class, [
             'method' => 'POST',
-            'url' => route('member.store')
+            'url' => route('user.store')
         ]);
 
-        return view('member.create', compact('form'));
+        return view('user.create', compact('form'));
     }
 
     public function store(FormBuilder $formBuilder)
     {
-        $form = $formBuilder->create(MemberForm::class);
+        $form = $formBuilder->create(UserCreateForm::class);
 
         $data = $form->getFieldValues();
 
@@ -46,9 +47,9 @@ class MemberController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        $this->member->create($data);
+        $this->user->create($data, Role::findByName(User::$ANALYST));
 
-        return redirect(route('member.index'));
+        return redirect(route('user.index'));
     }
 
     public function show($id)
@@ -62,21 +63,21 @@ class MemberController extends Controller
 
         $form = $formBuilder->create(MemberEditForm::class, [
             'method' => 'PUT',
-            'url' => route('member.update', [$user->id]),
+            'url' => route('user.update', [$user->id]),
             'model' => $user->toArray()
         ]);
 
-        return view('member.edit')->with(['member' => $user , 'form' => $form]);
+        return view('user.edit')->with(['user' => $user , 'form' => $form]);
 
     }
 
     public function update(Request $request, $id)
     {
-        return redirect(route('member.index'));
+        return redirect(route('user.index'));
     }
 
     public function destroy($id)
     {
-        return redirect(route('member.index'));
+        return redirect(route('user.index'));
     }
 }

@@ -2,12 +2,13 @@
 
 namespace Tests\Unit;
 
-use App\CreateUserWithTenant;
+use App\CreateUser;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
-class CreateUserWithTenantTest extends TestCase
+class CreateUserTest extends TestCase
 {
 
     public function test_create()
@@ -19,7 +20,7 @@ class CreateUserWithTenantTest extends TestCase
         $userData['password'] = Str::random(8);
 
         // Create user with tenant
-        $user = (new CreateUserWithTenant())->create($userData);
+        $user = (new CreateUser())->create($userData, Role::findByName(User::$ADMIN));
 
         $this->assertInstanceOf(
             \App\Models\User::class,

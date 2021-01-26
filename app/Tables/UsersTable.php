@@ -7,25 +7,16 @@ use Okipa\LaravelTable\Table;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
-class MembersTable extends AbstractTable
+class UsersTable extends AbstractTable
 {
-    protected $tenantId;
-
-    public function __construct(int $tenantId)
-    {
-        $this->tenantId = $tenantId;
-    }
-
     protected function table(): Table
     {
         return (new Table())->model(User::class)
             ->routes([
-                'index' => ['name' => 'member.index'],
-                'edit' => ['name' => 'member.edit'],
-                'destroy' => ['name' => 'member.destroy'],
-            ])->query(function (Builder $query) {
-                $query->where('tenant_id', $this->tenantId);
-            })->disableRows(function(User $user) {
+                'index' => ['name' => 'user.index'],
+                'edit' => ['name' => 'user.edit'],
+                'destroy' => ['name' => 'user.destroy'],
+            ])->disableRows(function(User $user) {
                  return $user->id === auth()->id();
             },['bg-danger', 'text-primary']);
     }

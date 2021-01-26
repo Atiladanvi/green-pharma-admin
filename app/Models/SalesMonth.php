@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class SalesMonth extends Model
@@ -13,6 +14,15 @@ class SalesMonth extends Model
     protected $table = 'sales_months_reports';
 
     protected $fillable = [
-        'descricao', 'fornecedor', 'unidade_id', 'produto', 'ean', 'valor', 'tipo', 'data'
+        'descricao', 'fornecedor', 'warehouse_id', 'produto', 'ean', 'valor', 'tipo', 'data'
     ];
+
+    public $timestamps  = false;
+
+    protected $dates = ['data'];
+
+    public function getDataAttribute($value)
+    {
+        return is_string($value) ? Carbon::createFromFormat('F j Y H:i:s:A', $value)->format('m/Y') : $value;
+    }
 }

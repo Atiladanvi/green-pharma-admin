@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\CreateUserWithTenant;
+use App\CreateUser;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -32,16 +33,16 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    private $tenant;
+    private $createUser;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CreateUserWithTenant $tenant)
+    public function __construct(CreateUser $createUser)
     {
-        $this->tenant = $tenant;
+        $this->createUser = $createUser;
         $this->middleware('guest');
     }
 
@@ -68,6 +69,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return $this->tenant->create($data);
+        return $this->createUser->create($data, Role::findByName(User::$ADMIN));
     }
 }

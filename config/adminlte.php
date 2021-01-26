@@ -255,10 +255,10 @@ return [
             ],
         ],
         [
-            'text' => 'Members',
-            'url'  => '/dashboard/members',
+            'text' => 'Users',
+            'url'  => '/dashboard/users',
             'icon' => 'fas fa-users',
-            'can'  => \Database\Seeders\PermissionsSeeder::$LIST_MEMBERS,
+            'can'  => \Database\Seeders\PermissionsSeeder::$LIST_USERS,
         ],
     ],
 

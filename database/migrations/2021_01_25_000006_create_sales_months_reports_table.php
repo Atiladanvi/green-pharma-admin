@@ -12,9 +12,9 @@ class CreateSalesMonthsReportsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('warehouse_id');
             $table->string('descricao');
             $table->string('fornecedor');
-            $table->integer('unidade_id');
             $table->string('produto');
             $table->string('ean');
             $table->string('valor');

@@ -19,8 +19,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "okipa/laravel-table": "^3.0",
-        "spatie/laravel-permission": "^3.18",
-        "stancl/tenancy": "^3.4"
+        "spatie/laravel-permission": "^3.18"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -58,8 +57,7 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "php artisan adminlte:install --only=assets"
+            "@php artisan package:discover --ansi"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

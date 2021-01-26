@@ -1,11 +1,10 @@
 @extends('layouts.site')
 @section('content')
-    <div style="padding-bottom: 7rem;padding-top: calc(7rem + 72px);" class="masthead text-white text-center bg-green">
+    <div style="padding-bottom: 7rem;padding-top: calc(1rem + 72px);" class="masthead text-white text-center bg-green">
         <div class="masthead-content">
             <div class="container">
-                <h1 class="masthead-heading mb-0">Start a web!</h1>
-                <h2 class="masthead-subheading mb-0 mb-0">Create a web under laravel power. It’s easy and free.</h2>
-                <a href="{{ auth()->user() ? route('dashboard') : route('register') }}" class="btn btn-primary btn-xl rounded-pill mt-5">Create your free account</a>
+                <h1 class="masthead-heading mb-0">{{ config('app.name') }}</h1>
+                <h2 class="masthead-subheading mb-0 mb-0">Create a web collaboration under laravel power. It’s easy.</h2>
             </div>
         </div>
     </div>

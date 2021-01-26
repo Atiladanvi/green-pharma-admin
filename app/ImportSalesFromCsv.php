@@ -38,14 +38,14 @@ class ImportSalesFromCsv
                 foreach ($row as $i => $item) {
                     $data[$row_count][$fields[$i]] = $item;
                 }
-
                 $fields = array_keys($data[$row_count]);
                 $sales = [];
 
                 foreach ($fields as $field) {
+
                     $date = DateTime::createFromFormat('m/Y', $field);
                     if ($date) {
-                        array_push($sales, ['data' => $date, 'valor' =>  $data[$row_count][$field], 'tipo' => $type, 'unidade_id' => $warehouse->id]);
+                        array_push($sales, ['data' => $date, 'valor' =>  $data[$row_count][$field], 'tipo' => $type, 'warehouse_id' => $warehouse->id]);
                     }
                 }
 
@@ -53,7 +53,7 @@ class ImportSalesFromCsv
                     $salesData = [
                         'descricao' => $data[$row_count]['DESCRIÇÃO'],
                         'fornecedor' => $data[$row_count]['FORNECEDOR'],
-                        'unidade_id' => $sale['unidade_id'],
+                        'warehouse_id' => $sale['warehouse_id'],
                         'produto' => $data[$row_count]['PRODUTO'],
                         'ean' =>  $data[$row_count]['EAN'],
                         'tipo' => $sale['tipo'],
@@ -64,16 +64,15 @@ class ImportSalesFromCsv
                 }
                 $row_count++;
             }
-        }
 
-        $this->data = collect($this->data)->unique('ean')->toArray();
+        }
 
         $dataChunks = array_chunk($this->data, ceil(count($this->data) / $this->insert_chunk_size));
 
         foreach ($dataChunks as $dataChunk){
             DB::table('sales_months_reports')->upsert(
                 $dataChunk,
-                ['descricao', 'fornecedor', 'unidade_id', 'produto' , 'ean', 'tipo', 'data'],
+                ['descricao', 'fornecedor', 'warehouse_id', 'produto' , 'ean', 'tipo', 'data'],
                 ['valor']
             );
         }

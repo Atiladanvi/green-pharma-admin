@@ -6,7 +6,7 @@ use App\Models\User;
 use Kris\LaravelFormBuilder\Form;
 use Kris\LaravelFormBuilder\Field;
 
-class MemberCreateForm extends Form
+class UserCreateForm extends Form
 {
     public function buildForm()
     {
