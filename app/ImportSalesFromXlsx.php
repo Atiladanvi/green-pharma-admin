@@ -6,17 +6,17 @@ use Aspera\Spreadsheet\XLSX\Reader;
 use DateTime;
 use Illuminate\Support\Facades\DB;
 
-class ImportSalesFromCsv
+class ImportSalesFromXlsx
 {
-    private $csvFile;
+    private $xlsxFile;
 
-    private $insert_chunk_size = 50;
+    private $upsert_chunk_size = 50;
 
     private $data = [];
 
-    public function setCsvFile($csvFile)
+    public function setXlsxFile($xlsxFile)
     {
-        $this->csvFile = $csvFile;
+        $this->xlsxFile = $xlsxFile;
 
         return $this;
     }
@@ -24,7 +24,7 @@ class ImportSalesFromCsv
     public function process($warehouse, $type)
     {
         $reader = new Reader();
-        $reader->open($this->csvFile);
+        $reader->open($this->xlsxFile);
 
         $data = [];
         $fields = [];
@@ -34,21 +34,17 @@ class ImportSalesFromCsv
             if ($key === 1) {
                 $fields = $row;
             } else {
-
                 foreach ($row as $i => $item) {
                     $data[$row_count][$fields[$i]] = $item;
                 }
                 $fields = array_keys($data[$row_count]);
                 $sales = [];
-
                 foreach ($fields as $field) {
-
                     $date = DateTime::createFromFormat('m/Y', $field);
                     if ($date) {
                         array_push($sales, ['data' => $date, 'valor' =>  $data[$row_count][$field], 'tipo' => $type, 'warehouse_id' => $warehouse->id]);
                     }
                 }
-
                 foreach ($sales as $sale) {
                     $salesData = [
                         'descricao' => $data[$row_count]['DESCRIÇÃO'],
@@ -64,10 +60,12 @@ class ImportSalesFromCsv
                 }
                 $row_count++;
             }
-
         }
 
-        $dataChunks = array_chunk($this->data, ceil(count($this->data) / $this->insert_chunk_size));
+        $reader->close();
+
+        $dataChunks = array_chunk($this->data, ceil(count($this->data) / $this->upsert_chunk_size));
+        $this->data = [];
 
         foreach ($dataChunks as $dataChunk){
             DB::table('sales_months_reports')->upsert(
@@ -77,6 +75,5 @@ class ImportSalesFromCsv
             );
         }
 
-        $reader->close();
     }
 }

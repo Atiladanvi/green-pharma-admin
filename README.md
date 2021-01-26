@@ -1,6 +1,6 @@
-# green-pharma-admin
+# green-reports
 
-## The best way to manage your customers
+## The best way to share reports
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
@@ -93,6 +93,7 @@ You can access the server at http://localhost:8000
 Finally, now you can login as administrator with follows credentials:
 
 **E-mail**: admin@green.dev
+
 **Password**: greenIsAmazing
 
 ### Changelog

@@ -46,7 +46,13 @@ Route::middleware([
         Route::put('/user/{id}', [App\Http\Controllers\UserController::class, 'update'])
             ->name('user.update');
 
-        Route::get('/reports', [App\Http\Controllers\ReportController::class, 'index'])
-            ->name('report.index');
+        Route::get('/report/importer', [App\Http\Controllers\ReportController::class, 'importer'])
+            ->name('report.importer');
+
+        Route::get('/report/exporter', [App\Http\Controllers\ReportController::class, 'exporter'])
+            ->name('report.exporter');
+
+        Route::post('/report/import', [App\Http\Controllers\ReportController::class, 'import'])
+            ->name('report.import');
     });
 });

@@ -2,12 +2,12 @@
 
 namespace Tests\Unit;
 
-use App\ImportSalesFromCsv;
+use App\ImportSalesFromXlsx;
 use App\Models\SalesMonth;
 use App\Models\Warehouse;
 use Tests\TestCase;
 
-class ImportSalesFromCsvTest extends TestCase
+class ImportSalesFromXlsxFileTest extends TestCase
 {
     public function test_process()
     {
@@ -18,8 +18,8 @@ class ImportSalesFromCsvTest extends TestCase
         $ware =  Warehouse::get()->first();
 
         // instance and process file
-        (new ImportSalesFromCsv())
-            ->setCsvFile($filePath)
+        (new ImportSalesFromXlsx())
+            ->setXlsxFile($filePath)
             ->process($ware, SalesMonth::$TYPE_QUANTITY);
 
         // assert database contains

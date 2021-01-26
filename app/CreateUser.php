@@ -9,8 +9,6 @@ use Spatie\Permission\Models\Role;
 
 class CreateUser
 {
-    protected $tenant;
-
     protected $user;
 
     public function create(array $data, Role $role) : User

@@ -231,26 +231,26 @@ return [
         ],
         ['header' => 'Dashboard'],
         [
-            'text'        => 'Painel',
+            'text'        => 'Panel',
             'url'         => '/dashboard/panel',
             'icon'        => 'fas fa-tachometer-alt'
         ],
         ['header' => 'Modules'],
         [
-            'text'    => 'Reports',
+            'text'    => 'Report',
             'icon'    => 'fas fa-fw fa-archive',
             'submenu' => [
                 [
-                    'text' => 'list',
-                    'url'  => '/dashboard/reports',
+                    'text' => 'exporter',
+                    'url'  => '/dashboard/report/exporter',
                     'icon' => false,
-                    'can'  => \Database\Seeders\PermissionsSeeder::$LIST_REPORTS,
+                    'can'  => \Database\Seeders\PermissionsSeeder::$EXPORT_REPORT,
                 ],
                 [
-                    'text' => 'upload',
-                    'url'  => '/dashboard/report/upload',
+                    'text' => 'importer',
+                    'url'  => '/dashboard/report/importer',
                     'icon' => false,
-                    'can'  => \Database\Seeders\PermissionsSeeder::$UPLOAD_REPORT,
+                    'can'  => \Database\Seeders\PermissionsSeeder::$IMPORT_REPORT,
                 ],
             ],
         ],

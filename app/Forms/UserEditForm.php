@@ -6,28 +6,25 @@ use App\Models\User;
 use Kris\LaravelFormBuilder\Form;
 use Kris\LaravelFormBuilder\Field;
 
-class UserCreateForm extends Form
+class UserEditForm extends Form
 {
     public function buildForm()
     {
         $this->add('name', Field::TEXT, [
-            'rules' => 'required|min:5|max:150'
+            'rules' => 'required|min:5|max:150',
+            'attr' => ['class' => 'form-control']
         ])
         ->add('role', Field::TEXT, [
             'attr' => ['class' => 'form-control', 'disabled' => true],
             'default_value' => User::$ANALYST
         ])
         ->add('email', Field::EMAIL, [
-            'rules' => 'required|email|unique:users'
+            'rules' => 'required|email|unique:users',
+            'attr' => ['class' => 'form-control']
         ])
-        ->add('password', Field::PASSWORD, [
-            'rules' => 'required|string|min:6|max:255|confirmed'
-        ])
-        ->add('password_confirmation', Field::PASSWORD, [
-            'rules' => 'required|string|min:6|max:255,confirmation'
-        ])
-        ->add('Store', Field::BUTTON_SUBMIT, [
+        ->add('Perform', Field::BUTTON_SUBMIT, [
             'attr' => ['class' => 'btn-primary btn']
         ]);
     }
+
 }
