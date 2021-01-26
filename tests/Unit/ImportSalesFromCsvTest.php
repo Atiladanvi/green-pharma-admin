@@ -11,18 +11,20 @@ class ImportSalesFromCsvTest extends TestCase
 {
     public function test_process()
     {
-        $file = __DIR__ . '/venda_01_01_2020_01_12_2020_06_01_2021_15_44_53_MG_1.xlsx';
+        // get file path
+        $filePath = __DIR__ . '/sales.xlsx';
 
+        // get the first warehouse
         $ware =  Warehouse::get()->first();
-        $valuetype = 'value';
 
+        // instance and process file
         (new ImportSalesFromCsv())
-            ->setCsvFile($file)
-            ->process($ware, $valuetype);
+            ->setCsvFile($filePath)
+            ->process($ware, SalesMonth::$TYPE_QUANTITY);
 
-        $sales = SalesMonth::get()->first();
-
-        $this->assertIsObject($sales);
-
+        // assert database contains
+        $this->assertDatabaseHas('sales_months_reports', [
+            'produto' => "90255"
+        ]);
     }
 }

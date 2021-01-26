@@ -13,14 +13,13 @@ class CreateSalesMonthsReportsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->increments('id');
             $table->string('descricao');
-            $table->string('fornecedor', 100);
+            $table->string('fornecedor');
             $table->integer('unidade_id');
             $table->string('produto');
-            $table->string('ean', 13);
-            $table->string('valor', 50);
-            $table->string('tipo', 45);
+            $table->string('ean');
+            $table->string('valor');
+            $table->string('tipo');
             $table->date('data');
-            $table->timestamps();
         });
     }
 
