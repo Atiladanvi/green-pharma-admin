@@ -19,7 +19,6 @@ class SalesMonth extends Model
 
     public $timestamps  = false;
 
-    protected $dates = ['data'];
 
     public function getDataAttribute($value)
     {

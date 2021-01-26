@@ -9,9 +9,9 @@ use Spatie\Permission\Models\Role;
 
 class PermissionsSeeder extends Seeder
 {
-    static $UPLOAD_REPORT = 'upload_report';
+    static $IMPORT_REPORT = 'import_report';
 
-    static $LIST_REPORTS = 'list_reports';
+    static $EXPORT_REPORT = 'export_report';
 
     static $CREATE_USER = 'create_user';
 
@@ -22,8 +22,8 @@ class PermissionsSeeder extends Seeder
         $role = Role::create(['name' => User::$ADMIN]);
         $role2 = Role::create(['name' => User::$ANALYST]);
 
-        $permission1 = Permission::create(['name' => self::$UPLOAD_REPORT]);
-        $permission2 = Permission::create(['name' => self::$LIST_REPORTS]);
+        $permission1 = Permission::create(['name' => self::$IMPORT_REPORT]);
+        $permission2 = Permission::create(['name' => self::$EXPORT_REPORT]);
         $permission3 = Permission::create(['name' => self::$CREATE_USER]);
         $permission4 = Permission::create(['name' => self::$LIST_USERS]);
 

@@ -20,8 +20,9 @@ class ReportTable extends AbstractTable
     {
         return (new Table())->model(SalesMonth::class)
         ->routes([
-            'index' => ['name' => 'report.index']
+            'index' => ['name' => 'report.exporter']
         ])
+        ->rowsNumber(10)
         ->query(function (Builder $query) {
             $query->when($this->warehouseId, function (Builder $q){
                 return $q->where('warehouse_id' , '=', $this->warehouseId);

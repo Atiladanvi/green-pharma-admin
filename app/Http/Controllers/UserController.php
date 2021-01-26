@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CreateUser ;
 use App\Forms\UserCreateForm;
-use App\Forms\MemberEditForm;
+use App\Forms\UserEditForm;
 use App\Models\User;
 use App\Tables\UsersTable;
 use Kris\LaravelFormBuilder\FormBuilder;
@@ -61,7 +61,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        $form = $formBuilder->create(MemberEditForm::class, [
+        $form = $formBuilder->create(UserEditForm::class, [
             'method' => 'PUT',
             'url' => route('user.update', [$user->id]),
             'model' => $user->toArray()
