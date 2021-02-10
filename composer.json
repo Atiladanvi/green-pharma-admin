@@ -1,14 +1,14 @@
 {
-    "name": "green/reports",
+    "name": "a2insights/reports",
     "type": "project",
-    "description": " The best way to share reports.",
+    "description": "The best way to share reports.",
     "keywords": [
-        "laravel",
+        "a2insights",
         "reports"
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8.0",
         "aspera/xlsx-reader": "^0.8.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -19,7 +19,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "maatwebsite/excel": "^3.1",
-        "okipa/laravel-table": "^3.0",
+        "okipa/laravel-table": "^4.0",
         "spatie/laravel-permission": "^3.18"
     },
     "require-dev": {
